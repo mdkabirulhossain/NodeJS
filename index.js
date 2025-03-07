@@ -15,6 +15,6 @@
 
 
 const people = require('./people');
-console.log(people);
+console.log(people.people);
+console.log(people.a);
 //Now it's show empty bcz people stay another file we don't access directly people.js file data that,s called node module system
-//when we export then we get the data
