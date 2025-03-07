@@ -35,7 +35,28 @@
 
 // 2. Node.js OS Module
 
-const os = require('os');
-console.log("Platform: ", os.platform());
-console.log("User Info: ", os.userInfo());
-console.log("Hostname: ", os.hostname());
+// const os = require('os');
+// console.log("Platform: ", os.platform());
+// console.log("User Info: ", os.userInfo());
+// console.log("Hostname: ", os.hostname());
+
+
+
+// 3. Node.js File System Module
+
+ const fs = require('fs');
+//  fs.writeFileSync('demo.txt', "Hello world");
+//Syncronous
+//const data = fs.readFileSync('demo.txt', 'utf8');
+// console.log(data);
+//asyncronous
+//  fs.readFile('demo.txt', (err, data)=>{
+//     if(err) throw err;
+//     //Now not pass utf8 that why I using toString here
+//     console.log(data.toString());
+//  })
+
+
+//Here are two option one is syncronous and another one is asyncronous. We always try to dus asyncronus it's bydefault behaviour for nodejs.
+//readFile asyncronous
+//readFileSync syncronous
