@@ -14,7 +14,18 @@
 // }, 2000)
 
 
-const people = require('./people');
-console.log(people.people);
-console.log(people.a);
-//Now it's show empty bcz people stay another file we don't access directly people.js file data that,s called node module system
+// const people = require('./people');
+// console.log(people.people);
+// console.log(people.a);
+
+//Before export it's show empty bcz people stay another file we don't access directly people.js file data that,s called node module system
+
+
+//###########    Built-in Modules ############### I am following w3schools documentation        ##########
+
+// 1. Node.js Path Module
+
+const path = require('path');
+const filePath = 'C:\project\NodeJS\index.js';
+const fileName = path.basename(filePath);
+console.log(fileName);
