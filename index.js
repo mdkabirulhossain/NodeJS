@@ -5,10 +5,16 @@
 // }).listen(4000);
 
 
-setTimeout(()=>{
-    console.log('test');
-}, 1000);
+// setTimeout(()=>{
+//     console.log('test');
+// }, 1000);
 
-setInterval(()=>{
-    console.log("Hello good people");
-}, 2000)
+// setInterval(()=>{
+//     console.log("Hello good people");
+// }, 2000)
+
+
+const people = require('./people');
+console.log(people);
+//Now it's show empty bcz people stay another file we don't access directly people.js file data that,s called node module system
+//when we export then we get the data
