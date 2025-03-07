@@ -25,7 +25,17 @@
 
 // 1. Node.js Path Module
 
-const path = require('path');
-const filePath = 'C:\project\NodeJS\index.js';
-const fileName = path.basename(filePath);
-console.log(fileName);
+// const path = require('path');
+// const filePath = 'C:/project/NodeJS/index.js';
+// const fileName = path.basename(filePath);
+// const parse = path.parse(filePath);
+// console.log(fileName);
+// console.log(parse);
+
+
+// 2. Node.js OS Module
+
+const os = require('os');
+console.log("Platform: ", os.platform());
+console.log("User Info: ", os.userInfo());
+console.log("Hostname: ", os.hostname());
