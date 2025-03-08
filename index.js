@@ -88,13 +88,41 @@
 
 
 //Now raise event situated on the different file shool.js
- const School = require ('./school');
+//  const School = require ('./school');
 
- const school = new School();
+//  const school = new School();
 
- //register a listener for bellRing event
- school.on('bellRing', ({period, text})=>{
-    console.log(`We need to run because ${period} ${text}`);
- });
+//  //register a listener for bellRing event
+//  school.on('bellRing', ({period, text})=>{
+//     console.log(`We need to run because ${period} ${text}`);
+//  });
 
- school.startPeriod();
+//  school.startPeriod();
+
+
+
+// 5. Node.js http Module
+
+const { Socket } = require('dgram');
+const http = require('http');
+const server = http.createServer((req, res)=>{
+    if( req.url === '/'){
+        res.write("Hello guys!!");
+        res.end();
+    }
+    else if(req.url === '/about'){
+        res.write("Hello guys!! Welcome to the about page.");
+        res.end();
+    } else{
+        res.write("Page Not found!!!!!!!");
+        res.end();
+    }
+});
+
+// // on meanse listener
+// server.on('connection', (Socket)=>{
+//     console.log("conected ...");
+// })
+
+server.listen(3000);
+console.log("Listening on port 3000");
