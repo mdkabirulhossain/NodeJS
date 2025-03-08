@@ -63,9 +63,9 @@
 
 // 4. Node.js Events Module
 
-const EventEmitter = require('events');
+// const EventEmitter = require('events');
 
-const emitter = new EventEmitter();
+// const emitter = new EventEmitter();
 
 // //register a listener for bellRing
 // emitter.on('bellRing', ()=>{
@@ -76,12 +76,25 @@ const emitter = new EventEmitter();
 // emitter.emit('bellRing');
 
 
-//register a listener for bellRing event
-emitter.on('bellRing', (period)=>{
-    console.log(`We need to run because ${period}`);
-})
+// //register a listener for bellRing event
+// emitter.on('bellRing', (period)=>{
+//     console.log(`We need to run because ${period}`);
+// })
 
-//raise an event
-setTimeout(()=>{
-    emitter.emit('bellRing', 'second period ended');
-}, 2000);
+// //raise an event
+// setTimeout(()=>{
+//     emitter.emit('bellRing', 'second period ended');
+// }, 2000);
+
+
+//Now raise event situated on the different file shool.js
+ const School = require ('./school');
+
+ const school = new School();
+
+ //register a listener for bellRing event
+ school.on('bellRing', ({period, text})=>{
+    console.log(`We need to run because ${period} ${text}`);
+ });
+
+ school.startPeriod();
