@@ -44,7 +44,7 @@
 
 // 3. Node.js File System Module
 
- const fs = require('fs');
+//  const fs = require('fs');
 //  fs.writeFileSync('demo.txt', "Hello world");
 //Syncronous
 //const data = fs.readFileSync('demo.txt', 'utf8');
@@ -60,3 +60,28 @@
 //Here are two option one is syncronous and another one is asyncronous. We always try to dus asyncronus it's bydefault behaviour for nodejs.
 //readFile asyncronous
 //readFileSync syncronous
+
+// 4. Node.js Events Module
+
+const EventEmitter = require('events');
+
+const emitter = new EventEmitter();
+
+// //register a listener for bellRing
+// emitter.on('bellRing', ()=>{
+//     console.log("Listener for bellRing event!!");
+// });
+
+// //raise an event
+// emitter.emit('bellRing');
+
+
+//register a listener for bellRing event
+emitter.on('bellRing', (period)=>{
+    console.log(`We need to run because ${period}`);
+})
+
+//raise an event
+setTimeout(()=>{
+    emitter.emit('bellRing', 'second period ended');
+}, 2000);
