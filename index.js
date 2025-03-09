@@ -139,46 +139,61 @@
 //     console.log(data);
 // })
 
-const http = require('http');
-const server = http.createServer((req, res)=>{
-    if( req.url === '/'){
-        res.write(`
-            <html> 
-            <head>
+// const http = require('http');
+// const server = http.createServer((req, res)=>{
+//     if( req.url === '/'){
+//         res.write(`
+//             <html> 
+//             <head>
             
-            <title> Form </title>
-            <head> 
-            </html>
+//             <title> Form </title>
+//             <head> 
+//             </html>
             
-            `);
+//             `);
 
-        res.write(`
-            <body>
-            <h1> Enter the input text:</h1>
-            <form method='post' action='/process'>
-            <input name= "message" />
-            </form>
+//         res.write(`
+//             <body>
+//             <h1> Enter the input text:</h1>
+//             <form method='post' action='/process'>
+//             <input name= "message" />
+//             </form>
             
-            </body>
-            `)
-        res.end();
-    }
-    else if(req.url === '/process' && req.method === "POST"){
+//             </body>
+//             `)
+//         res.end();
+//     }
+//     else if(req.url === '/process' && req.method === "POST"){
 
-        const body = [];
-        req.on('data', (chunk)=>{
-            body.push(chunk);
-        })
-        res.on('end', ()=>{
-            console.log("Stream finished");
-            console.log(body);
-        })
-        res.end();
-    } else{
-        res.write("Page Not found!!!!!!!");
-        res.end();
-    }
-});
+//         const body = [];
+//         req.on('data', (chunk)=>{
+//             body.push(chunk);
+//         })
+//         req.on('end', () => {
+//             console.log("Stream finished");
+//             const parseBody = Buffer.concat(body).toString();
+//             console.log(parseBody);
+//             res.write("Thank you for submitting");
+//             res.end();
+//         });
+        
+//     } else{
+//         res.write("Page Not found!!!!!!!");
+//         res.end();
+//     }
+// });
 
-server.listen(3000);
-console.log("Server is running on port 3000");
+// server.listen(3000);
+// console.log("Server is running on port 3000");
+
+
+//Writestream
+
+//Read data from one file and write other file
+const fs = require('fs');
+const ourReadStream = fs.createReadStream(`${__dirname}/bigdata.txt`, 'utf8');
+const ourWriteStream = fs.createWriteStream(`${__dirname}/output.txt`, 'utf8');
+
+ourReadStream.on('data', (data) =>{
+    ourWriteStream.write(data);
+})
