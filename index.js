@@ -190,14 +190,31 @@
 //Writestream
 
 //Read data from one file and write other file
+// const fs = require('fs');
+// const ourReadStream = fs.createReadStream(`${__dirname}/bigdata.txt`, 'utf8');
+// const ourWriteStream = fs.createWriteStream(`${__dirname}/output.txt`, 'utf8');
+
+// // ourReadStream.on('data', (data) =>{
+// //     ourWriteStream.write(data);
+// // })
+
+// //Write data using pipe
+
+// ourReadStream.pipe(ourWriteStream);
+
+
+
+//###     For better understanding ReadStream and WriteStream
+
+const http = require('http');
 const fs = require('fs');
-const ourReadStream = fs.createReadStream(`${__dirname}/bigdata.txt`, 'utf8');
-const ourWriteStream = fs.createWriteStream(`${__dirname}/output.txt`, 'utf8');
 
-// ourReadStream.on('data', (data) =>{
-//     ourWriteStream.write(data);
-// })
+const server = http.createServer((req, res)=>{
+    const myReadStream = fs.createReadStream(`${__dirname}/bigdata.txt`, 'utf8');
 
-//Write data using pipe
+    myReadStream.pipe(res);
 
-ourReadStream.pipe(ourWriteStream);
+});
+
+server.listen(3000);
+console.log('Server is running on port number 3000');
