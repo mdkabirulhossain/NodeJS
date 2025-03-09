@@ -103,15 +103,76 @@
 
 // 5. Node.js http Module
 
-const { Socket } = require('dgram');
+// const { Socket } = require('dgram');
+// const http = require('http');
+// const server = http.createServer((req, res)=>{
+//     if( req.url === '/'){
+//         res.write("Hello guys!!");
+//         res.end();
+//     }
+//     else if(req.url === '/about'){
+//         res.write("Hello guys!! Welcome to the about page.");
+//         res.end();
+//     } else{
+//         res.write("Page Not found!!!!!!!");
+//         res.end();
+//     }
+// });
+
+// // // on meanse listener
+// // server.on('connection', (Socket)=>{
+// //     console.log("conected ...");
+// // })
+
+// server.listen(3000);
+// console.log("Listening on port 3000");
+
+
+//###########      Stream & Buffer ##########################
+
+//Readstream
+
+// const fs = require('fs');
+// const ourReadStream = fs.createReadStream(`${__dirname}/bigdata.txt`, 'utf8');
+
+// ourReadStream.on('data', (data) =>{
+//     console.log(data);
+// })
+
 const http = require('http');
 const server = http.createServer((req, res)=>{
     if( req.url === '/'){
-        res.write("Hello guys!!");
+        res.write(`
+            <html> 
+            <head>
+            
+            <title> Form </title>
+            <head> 
+            </html>
+            
+            `);
+
+        res.write(`
+            <body>
+            <h1> Enter the input text:</h1>
+            <form method='post' action='/process'>
+            <input name= "message" />
+            </form>
+            
+            </body>
+            `)
         res.end();
     }
-    else if(req.url === '/about'){
-        res.write("Hello guys!! Welcome to the about page.");
+    else if(req.url === '/process' && req.method === "POST"){
+
+        const body = [];
+        req.on('data', (chunk)=>{
+            body.push(chunk);
+        })
+        res.on('end', ()=>{
+            console.log("Stream finished");
+            console.log(body);
+        })
         res.end();
     } else{
         res.write("Page Not found!!!!!!!");
@@ -119,10 +180,5 @@ const server = http.createServer((req, res)=>{
     }
 });
 
-// // on meanse listener
-// server.on('connection', (Socket)=>{
-//     console.log("conected ...");
-// })
-
 server.listen(3000);
-console.log("Listening on port 3000");
+console.log("Server is running on port 3000");
