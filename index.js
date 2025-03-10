@@ -206,15 +206,78 @@
 
 //###     For better understanding ReadStream and WriteStream
 
-const http = require('http');
-const fs = require('fs');
+// const http = require('http');
+// const fs = require('fs');
 
-const server = http.createServer((req, res)=>{
-    const myReadStream = fs.createReadStream(`${__dirname}/bigdata.txt`, 'utf8');
+// const server = http.createServer((req, res)=>{
+//     const myReadStream = fs.createReadStream(`${__dirname}/bigdata.txt`, 'utf8');
 
-    myReadStream.pipe(res);
+//     myReadStream.pipe(res);
 
-});
+// });
 
-server.listen(3000);
-console.log('Server is running on port number 3000');
+// server.listen(3000);
+// console.log('Server is running on port number 3000');
+
+
+// ######### Concept of req and res  #############
+// req (Incoming HTTP Request)
+// req is a Readable Stream → We read data sent by the client.
+// It contains:
+// Request URL (req.url) → Identifies the requested resource.
+// HTTP Method (req.method) → e.g., GET, POST, etc.
+// Headers (req.headers) → Additional request info.
+// Body Data (for POST, PUT, etc.) → Received in chunks and read using req.on('data', callback).
+
+
+// res (Outgoing HTTP Response)
+// res is a Writable Stream → We write data back to the client.
+// It allows us to:
+// Set Headers (res.writeHead(statusCode, headers)) → Defines response type.
+// Write Response Data (res.write(data)) → Send content.
+// End Response (res.end()) → Marks response completion.
+
+
+// Breakdown of Key Concepts
+// Feature	req (Request) - Readable	res (Response) - Writable
+// Purpose	Client → Server data transfer	Server → Client data transfer
+// Type	Readable Stream	Writable Stream
+// Usage	Read input from client	Send output to client
+// Methods	req.url, req.method	res.writeHead(), res.write(), res.end()
+// Body Handling	req.on('data', callback), req.on('end', callback)	res.write(data), res.end()
+
+
+//########### Understanding of NodeJs  ##################
+
+const mathLibrary = require('./math');
+const quoteLibrary = require('./quotes');
+
+//App object Module Scaffolding
+const app = {};
+
+//configaration
+
+app.config = {
+    timeBetweenQuotes: 1000,
+};
+
+// Function that prints a random quote
+
+app.printAQuote = function printAQuote(){
+    //Get all the quotes
+    const allQuotes = quoteLibrary.allQuotes();
+
+    //Get the length of the quotes
+    const numberOfQuotes = allQuotes.length;
+
+    //pick a random number between 1 and the number of quotes
+    const randomNumber = mathLibrary.getRandomNumber(1, numberOfQuotes);
+
+    //get the quote
+    const selectquote = allQuotes[randomNumber - 1];
+
+    //Print the quotes
+    console.log(selectquote);
+};
+
+//
