@@ -280,4 +280,11 @@ app.printAQuote = function printAQuote(){
     console.log(selectquote);
 };
 
-//
+// Function that loops indefinitely, calling the printQuote
+
+app.indefiniteLoop = function indefiniteLoop(){
+    setInterval(app.printAQuote, app.config.timeBetweenQuotes);
+};
+
+//Invoke the loop
+app.indefiniteLoop();
