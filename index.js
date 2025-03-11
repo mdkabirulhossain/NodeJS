@@ -57,7 +57,7 @@
 //  })
 
 
-//Here are two option one is syncronous and another one is asyncronous. We always try to dus asyncronus it's bydefault behaviour for nodejs.
+//Here are two option one is syncronous and another one is asyncronous. We always try to write asyncronus way. And asyncronus it's bydefault behaviour for nodejs.
 //readFile asyncronous
 //readFileSync syncronous
 
